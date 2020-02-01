@@ -21,6 +21,7 @@ import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png'
 import NotificationClicked from './images/cel-mock-ups-V4-18-green-selected.png'
 
 import { getCombinedData, getNotifications, sendText } from './utils/dataService'
+import Menu from './menu';
 
 const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
   return (
@@ -263,6 +264,9 @@ function App() {
             </AreaChart>
           </ResponsiveContainer>
           </>
+        )}/>
+        <Route exact path='/menu' render={({ history }) => (
+          <Menu />
         )}/>
     </Switch>
     </div>
