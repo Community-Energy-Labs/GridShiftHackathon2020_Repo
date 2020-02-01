@@ -1,0 +1,5 @@
+Flask
+flask-restplus
+numpy
+pandas
+requests
