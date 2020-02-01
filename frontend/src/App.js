@@ -162,17 +162,20 @@ function App() {
           </XAxis>
           <YAxis 
             tick={false} 
-            yAxisId="left" 
-            label={<CustomizedY1Label />}
+            yAxisId="left"
+            orientation="left"
             stroke='#999997'
-          />
+            angle={-90}
+            textAnchor="middle"
+          >
+          </YAxis>
           <YAxis 
             tick={false} 
             yAxisId="right" 
             orientation="right" 
-            label={<CustomizedY2Label />}
             stroke='#999997'
-          />
+          >
+          </YAxis>
           <CartesianGrid 
             vertical={false}
             horizontal={false}
@@ -180,7 +183,7 @@ function App() {
           <Area 
             yAxisId="left"
             type="monotone" 
-            dataKey="You" 
+            dataKey="You (Watts)" 
             stroke="#003E52" 
             strokeWidth={4}
             fillOpacity={0} 
@@ -188,7 +191,7 @@ function App() {
           <Area 
             yAxisId="right"
             type="monotone" 
-            dataKey="Renewables" 
+            dataKey="Renewables (MW)" 
             stroke="#CCDB2A" 
             strokeWidth={4}
             fillOpacity={0} 
@@ -196,11 +199,8 @@ function App() {
           <Legend
             align='right'
             layout='vertical'
+            verticalAlign='middle'
             iconType='plainline'
-            wrapperStyle={{
-              top: 80,
-              right: 50
-            }}
           />
         </AreaChart>
       </ResponsiveContainer>

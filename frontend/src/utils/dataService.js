@@ -18,8 +18,8 @@ function getCombinedData() {
     let minuteFraction = parseInt(point.time.slice(3, 5)) / 60;
     let newPoint = { 
       Time: hour + minuteFraction, 
-      Renewables: renewablesData[idx].value, 
-      You: point.value 
+      'Renewables (MW)': renewablesData[idx].value, 
+      'You (Watts)': point.value 
     };
     combinedData.push(newPoint);
   });

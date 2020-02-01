@@ -101,3 +101,18 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.recharts-default-legend {
+  font-size: 1.3rem;
+  margin-top: -3rem !important;
+}
+
+.legend-item-0 {
+  padding-bottom: 0.3rem;
+  color: #003E52;
+}
+
+.legend-item-1 {
+  color: #CCDB2A;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+}
