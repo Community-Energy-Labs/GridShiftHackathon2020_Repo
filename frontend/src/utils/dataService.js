@@ -26,7 +26,7 @@ async function getCombinedData(date) {
     let newPoint = { 
       Time: hour + minuteFraction, 
       'Renewables (MW)': renewablesData[idx].value, 
-      'You (Watts)': point.value 
+      'You (KW)': point.value 
     }
     combinedData.push(newPoint)
   })

@@ -243,7 +243,7 @@ function App() {
               <Area 
                 yAxisId="left"
                 type="monotone" 
-                dataKey="You (Watts)" 
+                dataKey="You (KW)" 
                 stroke="#003E52" 
                 strokeWidth={4}
                 fillOpacity={0} 
