@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover'
 
 import moment from 'moment'
-
+import User from './User'
 import './App.scss'
 
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area, Label } from 'recharts'
@@ -271,6 +271,8 @@ function App() {
             history={history}
           />
         )}/>
+        <Route exact path='/user' render={({ history }) => (
+          <User />)}/>
     </Switch>
     </div>
   )
