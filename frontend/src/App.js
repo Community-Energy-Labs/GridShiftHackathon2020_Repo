@@ -17,6 +17,7 @@ import ProfileIcon from './images/header-person-icon.png'
 import CELCornerLogo from './images/cel-corner-logo.png'
 import NotificationLogo from './images/cel-mock-ups-V4-18-red-empty.png'
 import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png'
+import NotificationClicked from './images/cel-mock-ups-V4-18-green-selected.png'
 
 import { getCombinedData, getNotifications } from './utils/dataService'
 
@@ -61,6 +62,7 @@ function App() {
   const [data, setData] = useState(null)
   const [startDate, setStartDate] = useState(new Date())
   const [anchorEl, setAnchorEl] = useState(null)
+  const [notifications, setNotifications] = useState([])
 
   useEffect(async () => {
     setData(await getCombinedData(null))
@@ -78,7 +80,9 @@ function App() {
     setAnchorEl(event.currentTarget)
 
     const formattedDate = moment(startDate).format('YYYY-MM-DD')
-    getNotifications(formattedDate)
+    getNotifications(formattedDate, data => {
+      setNotifications(data)
+    })
   }
 
   const handleNotificationClose = () => {
@@ -125,7 +129,16 @@ function App() {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             transformOrigin={{ vertical: 'top', horizontal: 'center' }}
           >
-            <p> Yooooo! </p>
+            <div className="notifications-container">
+              <h2>Click if you want a text reminder</h2>
+                {notifications.map(row =>
+                  <div className="notification">
+                    <img className="not-img" src={NotificationLogo}
+                      alt="notification logo" />
+                    <p className="not-text">{row.message}</p>
+                  </div>
+                )}
+            </div>
           </Popover>
         </header>
       </div>

@@ -120,3 +120,23 @@
 .react-datepicker {
   margin-top: -2.8rem;
 }
+
+.notifications-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification {
+  display: flex;
+  flex-direction: row;
+}
+
+.not-img {
+  width: 5rem;
+  height: 100%;
+}
+
+.not-text {
+  font-size: 1.3rem;
+  margin-left: 0.7rem;
+}

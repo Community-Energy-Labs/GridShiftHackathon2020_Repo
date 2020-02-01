@@ -39,9 +39,9 @@ async function getCombinedData(date) {
   return combinedData
 }
 
-async function getNotifications(date) {
+async function getNotifications(date, callback) {
   const results = await axios.get(`http://localhost:5000/api/suggestions?date=${date}`)
-  console.log('Suggestions::::::::::', results.data)
+  callback(results.data.data)
 }
 
 export {
