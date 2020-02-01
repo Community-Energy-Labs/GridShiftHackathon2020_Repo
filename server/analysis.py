@@ -3,7 +3,7 @@ from datetime import timedelta
 import pandas as pd
 
 # Mocking out a db/storage scheme. We would ideally store these types of options per-user
-CONSUMERS = {"electric_water_heater": False, "dishwasher": True, "electric_vehicle": True, "washer_dryer": True}
+CONSUMERS = {"electric_water_heater": False, "dishwasher": True, "electric_vehicle": True, "washer_dryer": True, "solar": True}
 SOURCES = {
     "smart meter": False,
     "home_energy_monitor": False
@@ -35,9 +35,15 @@ def get_suggestions(caiso_dict):
                             "Load your dishwasher tonight and set it to run after {} tomorrow".format(
                                 readable_time(max_renewable_time))))
     if CONSUMERS['washer_dryer']:
-        t_end = pd.to_datetime(max_renewable_time) + timedelta(hours=1)
+        t = pd.to_datetime(max_renewable_time) + timedelta(hours=1)
         suggestions.append((readable_time(max_renewable_time),
                             "Load your dishwasher tonight and set it to run after {} tomorrow".format(
-                                readable_time(t_end))))
+                                readable_time(t))))
+    if CONSUMERS['solar']:
+        t = pd.to_datetime(max_renewable_time) + timedelta(hours=7.5)
+        t_end = pd.to_datetime(max_renewable_time) + timedelta(hours=10.5)
+
+        suggestions.append((readable_time(t), "Pre-cool. Close drapes & windows. Program AC to run on max until {}. "
+                                              "Then allow the temp to stay at 78 until {}".format(readable_time(t), readable_time(t_end))))
 
     return suggestions
