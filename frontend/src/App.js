@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import moment from 'moment'
 
 import './App.scss'
@@ -25,37 +25,7 @@ const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
     </g>
   )
 }
-const CustomizedY1Label = (props) => {
-  return (
-    <text 
-      x={-130}  
-      y={50} 
-      fill="#003E52" 
-      transform="rotate(-90)"
-      style={{
-        fontSize: '20px'
-      }}
-    >
-      Watts
-    </text>
-  )
-}
-const CustomizedY2Label = (props) => {
-  return (
-    <text 
-      className='CustomizedY2Label'
-      x={80} 
-      y={-470} 
-      fill="#CCDB2A" 
-      transform="rotate(90)"
-      style={{
-        fontSize: '20px',
-      }}
-    >
-      MW
-    </text>
-  )
-}
+
 class ExampleCustomInput extends Component {
   render() {
     const {value, onClick} = this.props
@@ -83,18 +53,25 @@ class ExampleCustomInput extends Component {
     )
   }
 }
-const combinedData = getCombinedData()
+// const combinedData = getCombinedData(null)
 
 function App() {
-  const [data, setData] = useState(combinedData)
+  const [data, setData] = useState(null)
   const [startDate, setStartDate] = useState(new Date())
 
-  const handleDateChange = (date) => {
+  useEffect(async () => {
+    setData(await getCombinedData(null))
+  }, [])
+
+  const handleDateChange = async (date) => {
     // removes time of day variance
+    const newDate = moment(date).format('YYYY-MM-DD')
+
     setStartDate(new Date(date))
-    setData(getCombinedData())
+    setData(await getCombinedData(newDate))
   }
 
+  console.log('Data state:::::::::::', data)
   return (
     <div className="App">
       <div className="nav-bar-container">
