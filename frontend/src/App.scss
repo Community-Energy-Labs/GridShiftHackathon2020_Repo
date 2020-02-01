@@ -45,34 +45,43 @@
 .ResponsiveContainer {
   margin: 10vh 0 0;
 }
+
 .DatepickerWrapper {
-  position: relative;
-  margin: 10vh 20vw 0 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 2rem 0;
 }
+
 .DatepickerImg {
-  position: absolute;
   width: 10vw;
-  top: 0;
-  left: 0;
-  z-index: 1;
 }
+
 .DatepickerImg-hover {
-  position: absolute;
+  visibility: hidden;
   width: 10vw;
-  top: 0;
-  left: 0;
-  opacity: 0;
   z-index: 2;
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
 .DatepickerImg-hover:hover {
   opacity: 1;
 }
+
 .Datepicker-txt {
-  padding: 2vh 0 0 15vw;
+  text-align: left;
+  font-size: 1.5rem;
 }
+
 .CustomizedY2Label {
   background: red;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 

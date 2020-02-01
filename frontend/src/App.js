@@ -1,27 +1,27 @@
-import React, { Component, useState } from 'react';
-import './App.scss';
+import React, { Component, useState } from 'react'
+import './App.scss'
 
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area } from 'recharts'
 
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
 import DateImg from './images/calendar_no_number_noborder.png'
 import DateImgHover from './images/calendar_no_number_onhover.png'
-import { format, subDays } from 'date-fns';
+import { format, subDays } from 'date-fns'
 
-import ProfileIcon from './images/header-person-icon.png';
-import CELCornerLogo from './images/cel-corner-logo.png';
-import NotificationLogo from './images/cel-mock-ups-V4-18-red-empty.png';
-import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png';
+import ProfileIcon from './images/header-person-icon.png'
+import CELCornerLogo from './images/cel-corner-logo.png'
+import NotificationLogo from './images/cel-mock-ups-V4-18-red-empty.png'
+import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png'
 
-import { getCombinedData } from './utils/dataService';
+import { getCombinedData } from './utils/dataService'
 
 const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
   return (
     <g transform={`translate(${x * 1.03},${y})`}>
       <text x={0} y={0} dy={16} textAnchor="end" fill="#999997">{payload.value}</text>
     </g>
-  );
+  )
 }
 const CustomizedXLabel = (props) => {
   return (
@@ -35,7 +35,7 @@ const CustomizedXLabel = (props) => {
     >
       Hour
     </text>
-  );
+  )
 }
 const CustomizedY1Label = (props) => {
   return (
@@ -50,7 +50,7 @@ const CustomizedY1Label = (props) => {
     >
       Watts
     </text>
-  );
+  )
 }
 const CustomizedY2Label = (props) => {
   return (
@@ -66,11 +66,11 @@ const CustomizedY2Label = (props) => {
     >
       MW
     </text>
-  );
+  )
 }
 class ExampleCustomInput extends Component {
   render() {
-    const {value, onClick} = this.props;
+    const {value, onClick} = this.props
     return (
       <div 
         className="DatepickerWrapper"
@@ -88,55 +88,63 @@ class ExampleCustomInput extends Component {
         />
         <p className='Datepicker-txt'>Here's the deal for<br/>{value}</p>
       </div>
-    );
+    )
   }
 }
-const combinedData = getCombinedData();
+const combinedData = getCombinedData()
 
 function App() {
-  const [data, setData] = useState(combinedData);
-  const [startDate, setStartDate] = useState(subDays(new Date(), 1));
+  const [data, setData] = useState(combinedData)
+  const [startDate, setStartDate] = useState(subDays(new Date(), 1))
+
   const handleDateChange = (date) => {
     // removes time of day variance
-    date = format(date, 'yyyy-MM-dd');
-    setStartDate(new Date(date));
-    setData(getCombinedData());
+    date = format(date, 'yyyy-MM-dd')
+    setStartDate(new Date(date))
+    setData(getCombinedData())
   }
+
   return (
     <div className="App">
-      <img 
-        className='CELCornerLogo'
-        src={CELCornerLogo} 
-        alt="cel logo"
-      />
-      <header
-        className='Header'
-      >
+      <div className="nav-bar-container">
         <img 
-          className='ProfileIcon'
-          src={ProfileIcon} 
-          alt="profile icon"
+          className='CELCornerLogo'
+          src={CELCornerLogo} 
+          alt="cel logo"
         />
-        <div className="NotificationWrapper">
+        <header
+          className='Header'
+        >
           <img 
-            className='NotificationLogo'
-            src={NotificationLogo} 
-            alt="notification logo"
+            className='ProfileIcon'
+            src={ProfileIcon} 
+            alt="profile icon"
           />
-          <img 
-            className='NotificationLogoHover'
-            src={NotificationLogoHover} 
-            alt="notification logo hover"
-          />
-        </div>
-      </header>
-      <DatePicker 
-        selected={startDate} 
-        onChange={handleDateChange}
-        customInput={<ExampleCustomInput />}
-        maxDate={subDays(new Date(), 1)}
-        placeholderText="Select a date that isn't in the future"
-      />
+          <div className="NotificationWrapper">
+            <img 
+              className='NotificationLogo'
+              src={NotificationLogo} 
+              alt="notification logo"
+            />
+            <img 
+              className='NotificationLogoHover'
+              src={NotificationLogoHover} 
+              alt="notification logo hover"
+            />
+          </div>
+        </header>
+      </div>
+
+      <div className="date-container">
+        <DatePicker 
+          selected={startDate} 
+          onChange={handleDateChange}
+          customInput={<ExampleCustomInput />}
+          maxDate={subDays(new Date(), 1)}
+          placeholderText="Select a date that isn't in the future"
+        />
+      </div>
+
       <ResponsiveContainer
         className='ResponsiveContainer'
         width='95%'
@@ -173,8 +181,8 @@ function App() {
             stroke='#999997'
           />
           <CartesianGrid 
-            vertical={false} 
-            horizontalPoints={[100]} 
+            vertical={false}
+            horizontal={false}
           />
           <Area 
             yAxisId="left"
@@ -204,7 +212,7 @@ function App() {
         </AreaChart>
       </ResponsiveContainer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
