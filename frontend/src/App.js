@@ -141,8 +141,8 @@ function App() {
             open={open}
             anchorEl={anchorEl}
             onClose={handleNotificationClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
             style={{ width: '45%' }}
           >
             <div className="notifications-container">
