@@ -88,7 +88,9 @@ class ExampleCustomInput extends Component {
             onClick={onClick} 
           />
         </div>
-        <p className='Datepicker-txt'>Here's the deal for<br/>{value}</p>
+        <div className="date-text-container">
+          <p className='Datepicker-txt'>Here's the deal for {value}</p>
+        </div>
       </div>
     )
   }
