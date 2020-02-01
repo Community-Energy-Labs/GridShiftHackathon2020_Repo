@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import './App.scss'
 
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area } from 'recharts'
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area, Label } from 'recharts'
 
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
@@ -23,20 +23,6 @@ const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
     <g transform={`translate(${x * 1.03},${y})`}>
       <text x={0} y={0} dy={16} textAnchor="end" fill="#999997">{payload.value}</text>
     </g>
-  )
-}
-const CustomizedXLabel = (props) => {
-  return (
-    <text 
-      x={240}  
-      y={275} 
-      fill="#999997" 
-      style={{
-        fontSize: '20px'
-      }}
-    >
-      Hour
-    </text>
   )
 }
 const CustomizedY1Label = (props) => {
@@ -152,8 +138,8 @@ function App() {
 
       <ResponsiveContainer
         className='ResponsiveContainer'
-        width='95%'
-        height={280} 
+        width='100%'
+        height={450} 
       >
         <AreaChart 
           data={data} 
@@ -169,8 +155,10 @@ function App() {
             type='number'
             tickCount={13}
             stroke='#999997'
-            label={<CustomizedXLabel />}
           >
+            <Label value="Hours" position="bottom" offset={10} style={{
+              fontSize: '20px', fill: '#999997'
+            }} />
           </XAxis>
           <YAxis 
             tick={false} 
