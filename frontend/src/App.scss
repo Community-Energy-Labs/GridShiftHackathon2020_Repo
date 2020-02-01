@@ -54,18 +54,28 @@
 }
 
 .DatepickerImg {
-  width: 10vw;
+  width: 7rem;
+  height: auto;
+}
+
+.date-img-container {
+  position: relative;
 }
 
 .DatepickerImg-hover {
-  visibility: hidden;
-  width: 10vw;
-  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 7rem;
+  opacity: 0;
+  transition: .3s ease;
   cursor: pointer;
-  transition: opacity 0.3s ease;
 }
 
-.DatepickerImg-hover:hover {
+.date-img-container:hover .DatepickerImg-hover {
   opacity: 1;
 }
 

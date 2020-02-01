@@ -75,17 +75,19 @@ class ExampleCustomInput extends Component {
       <div 
         className="DatepickerWrapper"
       >
-        <img 
-          className='DatepickerImg'
-          src={DateImg} 
-          alt="date"
-        />
-        <img 
-          className='DatepickerImg-hover'
-          src={DateImgHover} 
-          alt="date-hover"
-          onClick={onClick} 
-        />
+        <div className="date-img-container">
+          <img 
+            className='DatepickerImg'
+            src={DateImg} 
+            alt="date"
+          />
+          <img 
+            className='DatepickerImg-hover'
+            src={DateImgHover} 
+            alt="date-hover"
+            onClick={onClick} 
+          />
+        </div>
         <p className='Datepicker-txt'>Here's the deal for<br/>{value}</p>
       </div>
     )
