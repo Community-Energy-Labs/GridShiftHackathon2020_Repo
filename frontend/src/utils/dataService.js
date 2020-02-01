@@ -44,9 +44,16 @@ async function getNotifications(date, callback) {
   callback(results.data.data)
 }
 
+async function sendText(message, callback) {
+  const results = await axios.post('http://localhost:5000/api/suggestions', { message })
+  console.log('Text result:::', results)
+  callback()
+}
+
 export {
   getEnergyUsageData,
   getRenewablesData,
   getCombinedData,
-  getNotifications
+  getNotifications,
+  sendText
 }

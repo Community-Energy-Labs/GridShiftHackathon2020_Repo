@@ -19,7 +19,7 @@ import NotificationLogo from './images/cel-mock-ups-V4-18-red-empty.png'
 import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png'
 import NotificationClicked from './images/cel-mock-ups-V4-18-green-selected.png'
 
-import { getCombinedData, getNotifications } from './utils/dataService'
+import { getCombinedData, getNotifications, sendText } from './utils/dataService'
 
 const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
   return (
@@ -89,6 +89,13 @@ function App() {
     setAnchorEl(null)
   }
 
+  const handleTextSending = (message, event) => {
+    event.preventDefault()
+    sendText(message, () => {
+      // update the notification state here
+    })
+  }
+
   const open = Boolean(anchorEl)
   const id = open ? 'notification-popover' : undefined
 
@@ -132,8 +139,12 @@ function App() {
           >
             <div className="notifications-container">
               <h2 style={{ color: '#003E52', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
-                {notifications.map(row =>
-                  <div className="notification">
+                {notifications.map((row, i) =>
+                  <div
+                    className="notification"
+                    onClick={handleTextSending.bind(this, row.message)}
+                    key={i}
+                  >
                     <img className="not-img" src={NotificationLogo}
                       alt="notification logo" />
                     <p className="not-text">{row.message}</p>
