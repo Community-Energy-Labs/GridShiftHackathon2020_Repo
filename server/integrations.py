@@ -22,10 +22,8 @@ SOLAREDGE_SITE_ID = '581494'
 
 @lru_cache(128)
 def get_solaredge_usage(date):
-    end_date = datetime.strptime(date, '%Y-%m-%d') + timedelta(days=1)
-    end_date = end_date.strftime('%Y-%m-%d')
     unit = 'QUARTER_OF_AN_HOUR'
-    energy_resp = requests.get(f'https://monitoringapi.solaredge.com/site/{SOLAREDGE_SITE_ID}/energy?timeUnit={unit}&endDate={end_date}&startDate={date}&api_key={SOLAREDGE_API_KEY}')
+    energy_resp = requests.get(f'https://monitoringapi.solaredge.com/site/{SOLAREDGE_SITE_ID}/energy?timeUnit={unit}&endDate={date}&startDate={date}&api_key={SOLAREDGE_API_KEY}')
     if energy_resp.status_code != 200:
         raise ConnectionError("Got code {} from Solaredge API".format(energy_resp.status_code))
     energy_data = energy_resp.json()['energy']
