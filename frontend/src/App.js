@@ -89,10 +89,18 @@ function App() {
     setAnchorEl(null)
   }
 
-  const handleTextSending = (message, event) => {
+  const handleTextSending = (messageToSend, event) => {
     event.preventDefault()
-    sendText(message, () => {
+    sendText(messageToSend, () => {
       // update the notification state here
+      const updatedNotifications = notifications.map(n => {
+        if (n.message === messageToSend) {
+          n.clicked = true
+          return n
+        }
+        return n
+      })
+      setNotifications(updatedNotifications)
     })
   }
 
@@ -139,16 +147,33 @@ function App() {
           >
             <div className="notifications-container">
               <h2 style={{ color: '#003E52', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
-                {notifications.map((row, i) =>
-                  <div
-                    className="notification"
-                    onClick={handleTextSending.bind(this, row.message)}
-                    key={i}
-                  >
-                    <img className="not-img" src={NotificationLogo}
-                      alt="notification logo" />
-                    <p className="not-text">{row.message}</p>
-                  </div>
+                {notifications.map((row, i) => {
+                  if (row.clicked && row.clicked === true) {
+                    return (
+                      <div
+                        className="notification"
+                        onClick={handleTextSending.bind(this, row.message)}
+                        key={i}
+                      >
+                        <img className="not-img" src={NotificationClicked}
+                          alt="notification logo" />
+                        <p className="not-text">{row.message}</p>
+                      </div>    
+                    )
+                  }
+
+                  return (
+                    <div
+                      className="notification"
+                      onClick={handleTextSending.bind(this, row.message)}
+                      key={i}
+                    >
+                      <img className="not-img" src={NotificationLogo}
+                        alt="notification logo" />
+                      <p className="not-text">{row.message}</p>
+                    </div>
+                  )
+                }
                 )}
             </div>
           </Popover>
