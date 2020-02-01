@@ -272,7 +272,7 @@ function App() {
           />
         )}/>
         <Route exact path='/user' render={({ history }) => (
-          <User />)}/>
+          <User history={history}/>)}/>
     </Switch>
     </div>
   )

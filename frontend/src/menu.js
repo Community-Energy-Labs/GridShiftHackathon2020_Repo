@@ -28,7 +28,7 @@ const Menu = ({ history }) => {
     e.preventDefault()
     // setAnyClicked(true)
     // e.target.classList.toggle('icon-clicked')
-    history.push('/app')
+    history.push('/user')
   }
   return (
     <div className='Menu'>
