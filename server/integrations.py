@@ -13,11 +13,8 @@ from pytz import timezone
 Integrations date in a date and return a dictionary of stats over a 24 hr period
 format  [{"time": "00:00:00","value": 0.0},{"time": "00:15:00","value": 0.2}, ... ]
 """
-
-os.environ['SOLAREDGE_API_KEY'] = 'D5KG4QG40QC6R9QGHFGRYX695UK2W69X'
-
 SOLAREDGE_API_KEY = os.environ.get('SOLAREDGE_API_KEY')
-SOLAREDGE_SITE_ID = '581494'
+SOLAREDGE_SITE_ID = os.environ.get('SOLAREDGE_SITE_ID')
 
 
 @lru_cache(128)

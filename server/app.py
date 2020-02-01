@@ -4,14 +4,18 @@ import integrations
 import analysis
 from datetime import datetime
 from flask_cors import CORS
-
-
+from twilio.rest import Client
+import os
 
 flask_app = Flask(__name__)
 app = Api(app=flask_app)
 
 # enable CORS
 CORS(flask_app, resources={r'/*': {'origins': '*'}})
+
+TWILIO_AUTH = os.environ.get('TWILIO_AUTH')
+TWILIO_SID = os.environ.get('TWILIO_SID')
+TEST_NUMBER = os.environ.get('TEST_NUMBER')
 
 name_space = app.namespace('api', description='CEL APIs')
 
@@ -50,7 +54,7 @@ class SupplyClass(Resource):
 @name_space.doc(
     params={'consumers': 'dictionary with household energy consumers and true/false for'
                          ' items in [laundry, pool, electric heater, electric vehicle]'})
-class Options_Class(Resource):
+class OptionsClass(Resource):
     def post(self):
         data = request.get_json()
         for key in list(analysis.CONSUMERS.keys()):
@@ -60,9 +64,9 @@ class Options_Class(Resource):
 
 
 @name_space.route("/suggestions")
-@name_space.doc(params={'date': 'Date in YYYY-MM-DD format'},
-                responses={"data": "array of {time: suggestion} for given user"})
 class SuggestionsClass(Resource):
+    @name_space.doc(params={'date': 'Date in YYYY-MM-DD format'},
+                    responses={"data": "array of {time: suggestion} for given user"})
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('date', help='must provide start date')
@@ -75,3 +79,16 @@ class SuggestionsClass(Resource):
         suggestions = analysis.get_suggestions(caiso_dict)
 
         return {"data": suggestions}, 200
+
+    @name_space.doc(params={'message': 'text message of notification to send'})
+    def post(self):
+        message = request.get_json()['message']
+        client = Client(TWILIO_SID, TWILIO_AUTH)
+
+        text_message = client.messages.create(
+            body=message,
+            from_='+19566836041',
+            to=TEST_NUMBER
+        )
+        return {"data": {"twilio_id": text_message.sid, "message": message}}, 200
+
