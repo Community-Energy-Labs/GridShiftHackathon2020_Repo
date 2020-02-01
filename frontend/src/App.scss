@@ -2,24 +2,63 @@
   text-align: center;
   color: #003E52;
   font-family: 'Lato', sans-serif;
+  position: relative;
+}
+.CELCornerLogo {
+  position: absolute;
+  top: -3vh;
+  right: -1vw;
+  width: 25vw;
+  cursor: pointer;
+}
+.Header {
+  display: flex;
+  width: 20vw;
+  justify-content: space-around;
+  padding: 4vh 0 0 5vw;
+}
+.ProfileIcon {
+  width: 7vw;
+  height: 7vw;
+  cursor: pointer;
+}
+.NotificationWrapper {
+  position: relative;
+}
+.NotificationLogo {
+  width: 7vw;
+  z-index: 1;
+}
+.NotificationLogoHover {
+  width: 7vw;
+  position: absolute;
+  top: -0.5vh;
+  left: -0.09vw;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.NotificationLogoHover:hover {
+  opacity: 1;
 }
 .ResponsiveContainer {
-  margin: 15vh 0 0;
+  margin: 10vh 0 0;
 }
 .DatepickerWrapper {
   position: relative;
-  margin: 20vh 0 0;
+  margin: 10vh 20vw 0 0;
 }
 .DatepickerImg {
   position: absolute;
-  width: 8vw;
+  width: 10vw;
   top: 0;
   left: 0;
   z-index: 1;
 }
 .DatepickerImg-hover {
   position: absolute;
-  width: 8vw;
+  width: 10vw;
   top: 0;
   left: 0;
   opacity: 0;
@@ -31,6 +70,9 @@
   opacity: 1;
 }
 .Datepicker-txt {
-  padding: 1vh 0 0 15vw;
+  padding: 2vh 0 0 15vw;
+}
+.CustomizedY2Label {
+  background: red;
 }
 
