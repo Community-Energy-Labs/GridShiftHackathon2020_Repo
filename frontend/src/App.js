@@ -146,7 +146,7 @@ function App() {
             style={{ width: '45%' }}
           >
             <div className="notifications-container">
-              <h2 style={{ color: '#003E52', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
+              <h2 style={{ color: '#003E52', fontFamily: 'Lato, sans-serif', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
                 {notifications.map((row, i) => {
                   if (row.clicked && row.clicked === true) {
                     return (
