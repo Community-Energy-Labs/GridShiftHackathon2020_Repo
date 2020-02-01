@@ -18,7 +18,7 @@ import CELCornerLogo from './images/cel-corner-logo.png'
 import NotificationLogo from './images/cel-mock-ups-V4-18-red-empty.png'
 import NotificationLogoHover from './images/cel-mock-ups-V4-18-red-selected.png'
 
-import { getCombinedData } from './utils/dataService'
+import { getCombinedData, getNotifications } from './utils/dataService'
 
 const CustomizedXAxisTick = ({x, y, stroke, payload,}) => {
   return (
@@ -76,6 +76,9 @@ function App() {
 
   const handleNotificationClick = event => {
     setAnchorEl(event.currentTarget)
+
+    const formattedDate = moment(startDate).format('YYYY-MM-DD')
+    getNotifications(formattedDate)
   }
 
   const handleNotificationClose = () => {

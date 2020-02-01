@@ -36,12 +36,17 @@ async function getCombinedData(date) {
     You: energyUsageData[energyUsageData.length - 1].value 
   })
 
-  console.log('this is the combined data::::::::', combinedData)
   return combinedData
+}
+
+async function getNotifications(date) {
+  const results = await axios.get(`http://localhost:5000/api/suggestions?date=${date}`)
+  console.log('Suggestions::::::::::', results.data)
 }
 
 export {
   getEnergyUsageData,
   getRenewablesData,
   getCombinedData,
+  getNotifications
 }
