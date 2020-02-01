@@ -128,9 +128,10 @@ function App() {
             onClose={handleNotificationClose}
             anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            style={{ width: '45%' }}
           >
             <div className="notifications-container">
-              <h2>Click if you want a text reminder</h2>
+              <h2 style={{ color: '#003E52', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
                 {notifications.map(row =>
                   <div className="notification">
                     <img className="not-img" src={NotificationLogo}

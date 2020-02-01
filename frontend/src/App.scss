@@ -124,11 +124,15 @@
 .notifications-container {
   display: flex;
   flex-direction: column;
+  padding-bottom: 4rem;
 }
 
 .notification {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  padding: 0 1rem 0 0.7rem;
+  margin-bottom: -0.8rem;
 }
 
 .not-img {
