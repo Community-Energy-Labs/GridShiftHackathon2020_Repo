@@ -1,0 +1,189 @@
+.App {
+    text-align: center;
+    color: #003E52;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+  }
+  .CELCornerLogo {
+    position: absolute;
+    top: -3vh;
+    right: -1vw;
+    width: 25vw;
+    cursor: pointer;
+  }
+  .Header {
+    display: flex;
+    width: 20vw;
+    justify-content: space-around;
+    padding: 4vh 0 0 5vw;
+  }
+  .ProfileIcon {
+    width: 7vw;
+    height: 7vw;
+    cursor: pointer;
+  }
+  .NotificationWrapper {
+    position: relative;
+  }
+  .NotificationLogo {
+    width: 7vw;
+    z-index: 1;
+  }
+  .NotificationLogoHover {
+    width: 7vw;
+    position: absolute;
+    top: -0.4rem;
+    left: -0.15rem;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  .NotificationLogoHover:hover {
+    opacity: 1;
+  }
+  .ResponsiveContainer {
+    margin: 10vh 0 0;
+  }
+  
+  
+  .DatepickerWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 2rem 0;
+  }
+  
+  .DatepickerImg {
+    width: 7rem;
+    height: auto;
+  }
+  
+  .date-img-container {
+    position: relative;
+  }
+  
+  .DatepickerImg-hover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 7rem;
+    opacity: 0;
+    transition: .3s ease;
+    cursor: pointer;
+  }
+  
+  .date-img-container:hover .DatepickerImg-hover {
+    opacity: 1;
+  }
+  
+  .Datepicker-txt {
+    text-align: left;
+    font-size: 1.5rem;
+    margin-left: 2rem;
+  }
+  
+  .CustomizedY2Label {
+    background: red;
+  }
+  
+  .date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-bottom: 2rem;
+    margin-left: 7rem;
+  }
+  
+  .date-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .recharts-default-legend {
+    font-size: 1.3rem;
+    margin-top: -3rem !important;
+  }
+  
+  .legend-item-0 {
+    padding-bottom: 0.3rem;
+    color: #003E52;
+  }
+  
+  .legend-item-1 {
+    color: #CCDB2A;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .react-datepicker {
+    margin-top: -2.8rem;
+  }
+  
+  .notifications-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4rem;
+  }
+  
+  .notification {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem 0 0.7rem;
+    margin-bottom: -0.8rem;
+    color: #003E52;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .notification:hover {
+    background-color: rgba(153, 153, 153, 0.2);
+  }
+  
+  .not-img {
+    width: 5rem;
+    height: 100%;
+  }
+  
+  .not-text {
+    font-size: 1.3rem;
+    margin-left: 0.7rem;
+  }
+
+//   User css
+  .Userinputcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input[type=text] {
+        border-radius: 18px;
+      margin: 10px;
+      width: 200px;
+      height: 50px;
+      border-color: #00B189;
+      border-width: 5px;
+      font-size: medium;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+  }
+
+  input[type=submit]{
+      border: none;
+      padding: 15px;
+      background-color: #999997 ;
+      border-radius: 2px;
+      font-size: medium;
+  }
+
+  .UserInputForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
