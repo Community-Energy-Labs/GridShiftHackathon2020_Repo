@@ -6,6 +6,7 @@ from datetime import datetime
 from flask_cors import CORS
 
 
+
 flask_app = Flask(__name__)
 app = Api(app=flask_app)
 
@@ -61,7 +62,7 @@ class Options_Class(Resource):
 @name_space.route("/suggestions")
 @name_space.doc(params={'date': 'Date in YYYY-MM-DD format'},
                 responses={"data": "array of {time: suggestion} for given user"})
-class UsageClass(Resource):
+class SuggestionsClass(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('date', help='must provide start date')
