@@ -3,9 +3,14 @@ from flask_restplus import Api, Resource, reqparse
 import integrations
 import analysis
 from datetime import datetime
+from flask_cors import CORS
+
 
 flask_app = Flask(__name__)
 app = Api(app=flask_app)
+
+# enable CORS
+CORS(flask_app, resources={r'/*': {'origins': '*'}})
 
 name_space = app.namespace('api', description='CEL APIs')
 
@@ -40,7 +45,7 @@ class SupplyClass(Resource):
         return {"data": caiso_dict}, 200
 
 
-@name_space.route("/consumers")
+@name_space.route("/household_consumers")
 @name_space.doc(
     params={'consumers': 'dictionary with household energy consumers and true/false for'
                          ' items in [laundry, pool, electric heater, electric vehicle]'})
