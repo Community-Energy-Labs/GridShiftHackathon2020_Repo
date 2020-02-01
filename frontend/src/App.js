@@ -1,4 +1,6 @@
 import React, { Component, useState } from 'react'
+import moment from 'moment'
+
 import './App.scss'
 
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Legend, Area } from 'recharts'
@@ -99,11 +101,10 @@ const combinedData = getCombinedData()
 
 function App() {
   const [data, setData] = useState(combinedData)
-  const [startDate, setStartDate] = useState(subDays(new Date(), 1))
+  const [startDate, setStartDate] = useState(new Date())
 
   const handleDateChange = (date) => {
     // removes time of day variance
-    date = format(date, 'yyyy-MM-dd')
     setStartDate(new Date(date))
     setData(getCombinedData())
   }
