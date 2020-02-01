@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover'
 
 import moment from 'moment'
@@ -109,155 +110,161 @@ function App() {
 
   return (
     <div className="App">
-      <div className="nav-bar-container">
-        <img 
-          className='CELCornerLogo'
-          src={CELCornerLogo} 
-          alt="cel logo"
-        />
-        <header
-          className='Header'
-        >
-          <img 
-            className='ProfileIcon'
-            src={ProfileIcon} 
-            alt="profile icon"
-          />
-          <div className="NotificationWrapper">
+      <Switch>
+        <Route exact path='/app' render={({ history }) => (
+          <>
+          <div className="nav-bar-container">
             <img 
-              className='NotificationLogo'
-              src={NotificationLogo} 
-              alt="notification logo"
+              className='CELCornerLogo'
+              src={CELCornerLogo} 
+              alt="cel logo"
             />
-            <img 
-              className='NotificationLogoHover'
-              src={NotificationLogoHover} 
-              alt="notification logo hover"
-              onClick={handleNotificationClick}
+            <header
+              className='Header'
+            >
+              <img 
+                className='ProfileIcon'
+                src={ProfileIcon} 
+                alt="profile icon"
+              />
+              <div className="NotificationWrapper">
+                <img 
+                  className='NotificationLogo'
+                  src={NotificationLogo} 
+                  alt="notification logo"
+                />
+                <img 
+                  className='NotificationLogoHover'
+                  src={NotificationLogoHover} 
+                  alt="notification logo hover"
+                  onClick={handleNotificationClick}
+                />
+              </div>
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleNotificationClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                style={{ width: '45%' }}
+              >
+                <div className="notifications-container">
+                  <h2 style={{ color: '#003E52', fontFamily: 'Lato, sans-serif', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
+                    {notifications.map((row, i) => {
+                      if (row.clicked && row.clicked === true) {
+                        return (
+                          <div
+                            className="notification"
+                            onClick={handleTextSending.bind(this, row.message)}
+                            key={i}
+                          >
+                            <img className="not-img" src={NotificationClicked}
+                              alt="notification logo" />
+                            <p className="not-text">{row.message}</p>
+                          </div>    
+                        )
+                      }
+
+                      return (
+                        <div
+                          className="notification"
+                          onClick={handleTextSending.bind(this, row.message)}
+                          key={i}
+                        >
+                          <img className="not-img" src={NotificationLogo}
+                            alt="notification logo" />
+                          <p className="not-text">{row.message}</p>
+                        </div>
+                      )
+                    }
+                    )}
+                </div>
+              </Popover>
+            </header>
+          </div>
+
+          <div className="date-container">
+            <DatePicker 
+              selected={startDate} 
+              onChange={handleDateChange}
+              customInput={<ExampleCustomInput />}
+              maxDate={subDays(new Date(), 1)}
+              placeholderText="Select a date that isn't in the future"
             />
           </div>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleNotificationClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-            style={{ width: '45%' }}
-          >
-            <div className="notifications-container">
-              <h2 style={{ color: '#003E52', fontFamily: 'Lato, sans-serif', textAlign: 'center', marginBottom: '0' }}>Click if you want a text reminder</h2>
-                {notifications.map((row, i) => {
-                  if (row.clicked && row.clicked === true) {
-                    return (
-                      <div
-                        className="notification"
-                        onClick={handleTextSending.bind(this, row.message)}
-                        key={i}
-                      >
-                        <img className="not-img" src={NotificationClicked}
-                          alt="notification logo" />
-                        <p className="not-text">{row.message}</p>
-                      </div>    
-                    )
-                  }
 
-                  return (
-                    <div
-                      className="notification"
-                      onClick={handleTextSending.bind(this, row.message)}
-                      key={i}
-                    >
-                      <img className="not-img" src={NotificationLogo}
-                        alt="notification logo" />
-                      <p className="not-text">{row.message}</p>
-                    </div>
-                  )
-                }
-                )}
-            </div>
-          </Popover>
-        </header>
-      </div>
-
-      <div className="date-container">
-        <DatePicker 
-          selected={startDate} 
-          onChange={handleDateChange}
-          customInput={<ExampleCustomInput />}
-          maxDate={subDays(new Date(), 1)}
-          placeholderText="Select a date that isn't in the future"
-        />
-      </div>
-
-      <ResponsiveContainer
-        className='ResponsiveContainer'
-        width='100%'
-        height={450} 
-      >
-        <AreaChart 
-          data={data} 
-          margin={{
-            right: 50,
-            bottom: 30
-          }} 
-        >
-          <XAxis
-            dataKey="Time" 
-            tick={<CustomizedXAxisTick />} 
-            allowDecimals={false}
-            type='number'
-            tickCount={13}
-            stroke='#999997'
+          <ResponsiveContainer
+            className='ResponsiveContainer'
+            width='100%'
+            height={450} 
           >
-            <Label value="Hours" position="bottom" offset={10} style={{
-              fontSize: '20px', fill: '#999997'
-            }} />
-          </XAxis>
-          <YAxis 
-            tick={false} 
-            yAxisId="left"
-            orientation="left"
-            stroke='#999997'
-            angle={-90}
-            textAnchor="middle"
-          >
-          </YAxis>
-          <YAxis 
-            tick={false} 
-            yAxisId="right" 
-            orientation="right" 
-            stroke='#999997'
-          >
-          </YAxis>
-          <CartesianGrid 
-            vertical={false}
-            horizontal={false}
-          />
-          <Area 
-            yAxisId="left"
-            type="monotone" 
-            dataKey="You (Watts)" 
-            stroke="#003E52" 
-            strokeWidth={4}
-            fillOpacity={0} 
-          />
-          <Area 
-            yAxisId="right"
-            type="monotone" 
-            dataKey="Renewables (MW)" 
-            stroke="#CCDB2A" 
-            strokeWidth={4}
-            fillOpacity={0} 
-          />
-          <Legend
-            align='right'
-            layout='vertical'
-            verticalAlign='middle'
-            iconType='plainline'
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+            <AreaChart 
+              data={data} 
+              margin={{
+                right: 50,
+                bottom: 30
+              }} 
+            >
+              <XAxis
+                dataKey="Time" 
+                tick={<CustomizedXAxisTick />} 
+                allowDecimals={false}
+                type='number'
+                tickCount={13}
+                stroke='#999997'
+              >
+                <Label value="Hours" position="bottom" offset={10} style={{
+                  fontSize: '20px', fill: '#999997'
+                }} />
+              </XAxis>
+              <YAxis 
+                tick={false} 
+                yAxisId="left"
+                orientation="left"
+                stroke='#999997'
+                angle={-90}
+                textAnchor="middle"
+              >
+              </YAxis>
+              <YAxis 
+                tick={false} 
+                yAxisId="right" 
+                orientation="right" 
+                stroke='#999997'
+              >
+              </YAxis>
+              <CartesianGrid 
+                vertical={false}
+                horizontal={false}
+              />
+              <Area 
+                yAxisId="left"
+                type="monotone" 
+                dataKey="You (Watts)" 
+                stroke="#003E52" 
+                strokeWidth={4}
+                fillOpacity={0} 
+              />
+              <Area 
+                yAxisId="right"
+                type="monotone" 
+                dataKey="Renewables (MW)" 
+                stroke="#CCDB2A" 
+                strokeWidth={4}
+                fillOpacity={0} 
+              />
+              <Legend
+                align='right'
+                layout='vertical'
+                verticalAlign='middle'
+                iconType='plainline'
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+          </>
+        )}/>
+    </Switch>
     </div>
   )
 }
