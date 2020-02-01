@@ -1,4 +1,6 @@
 import React, { Component, useState, useEffect } from 'react'
+import Popover from '@material-ui/core/Popover'
+
 import moment from 'moment'
 
 import './App.scss'
@@ -9,7 +11,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import DateImg from './images/calendar_no_number_noborder.png'
 import DateImgHover from './images/calendar_no_number_onhover.png'
-import { format, subDays } from 'date-fns'
+import { subDays } from 'date-fns'
 
 import ProfileIcon from './images/header-person-icon.png'
 import CELCornerLogo from './images/cel-corner-logo.png'
@@ -58,6 +60,7 @@ class ExampleCustomInput extends Component {
 function App() {
   const [data, setData] = useState(null)
   const [startDate, setStartDate] = useState(new Date())
+  const [anchorEl, setAnchorEl] = useState(null)
 
   useEffect(async () => {
     setData(await getCombinedData(null))
@@ -71,7 +74,17 @@ function App() {
     setData(await getCombinedData(newDate))
   }
 
-  console.log('Data state:::::::::::', data)
+  const handleNotificationClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleNotificationClose = () => {
+    setAnchorEl(null)
+  }
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'notification-popover' : undefined
+
   return (
     <div className="App">
       <div className="nav-bar-container">
@@ -98,8 +111,19 @@ function App() {
               className='NotificationLogoHover'
               src={NotificationLogoHover} 
               alt="notification logo hover"
+              onClick={handleNotificationClick}
             />
           </div>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleNotificationClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+          >
+            <p> Yooooo! </p>
+          </Popover>
         </header>
       </div>
 
