@@ -24,12 +24,7 @@ const iconsArray = [
 
 const Menu = ({ history }) => {
   const [anyClicked, setAnyClicked] = useState(false);
-  const handleUserIconClick = e => {
-    e.preventDefault()
-    // setAnyClicked(true)
-    // e.target.classList.toggle('icon-clicked')
-    history.push('/user')
-  }
+
   return (
     <div className='Menu'>
       <div className="nav-bar-container">
@@ -65,10 +60,16 @@ const Menu = ({ history }) => {
               className='user-input-icon'
               src={icon} 
               alt={`icon-${idx}`}
-              onClick={handleUserIconClick}
+              onClick={() => history.push('/user')}
             />
           ))}
         </div>
+        <p 
+          className='dontHaveAny'
+          onClick={() => history.push('/app')}
+        >
+          (I don't have any of these.)
+        </p>
       </div>
     </div>
   )

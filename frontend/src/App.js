@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover'
 
 import moment from 'moment'
@@ -112,6 +112,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
+        <Route exact path='/' render={() => (
+          <Redirect to='/app' />
+        )}/>
         <Route exact path='/app' render={({ history }) => (
           <>
           <div className="nav-bar-container">

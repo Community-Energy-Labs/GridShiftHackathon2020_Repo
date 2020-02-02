@@ -18,10 +18,18 @@
 .user-input-icon {
   width: 10rem;
   transition: all 0.3s ease;
+  padding: 0;
 }
 .user-input-icon:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 177, 137, 0.8), 0 6px 20px 0 rgba(0, 177, 137, 0.8);
 }
 .icon-clicked {
   box-shadow: 0 4px 8px 0 rgba(0, 177, 137, 0.8), 0 6px 20px 0 rgba(0, 177, 137, 0.8);
+}
+.dontHaveAny {
+  color: #999997;
+  cursor: pointer;
+}
+.dontHaveAny:hover {
+  text-decoration: underline;
 }
